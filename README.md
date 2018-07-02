@@ -52,6 +52,9 @@
 浏览器缓存是浏览器端用于在本地保存数据并进行快速读取以避免重复资源请求的传输机制的统称.
 浏览器的缓存实现机制种类较多,一般可以认为九种: HTTP文件缓存, LocalStorage, SessionStorage, indexDB, Web SQL, Cookie, CacheStorage, Application Cache, Flash缓存
 
+#### 四.浏览器是如何解析
+
+
 ## CSS
 #### 一.border-box 属性和区别,主要涉及height和width区别.画图
 box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS 盒子模型。
@@ -190,8 +193,10 @@ DOM2级事件模型中规定了事件流的三个阶段：捕获阶段、目标�
 
 #### 十.事件的委托（代理 Delegated Events）的原理以及优缺点
 委托（代理）事件是那些被绑定到父级元素的事件，但是只有当满足一定匹配条件时才会被挪。这是靠事件的冒泡机制来实现的.
-
 [js事件相关的参考资料](http://www.w3cmark.com/2016/439.html)
+
+
+#### 十一.移动端touch延迟,如何解决
  
 
 
@@ -222,6 +227,9 @@ google cloud(用亚马逊的也可以搭建的) 有免费一年的服务 自己�
 
 #### 三.白名单机制
 使用黑名单和白名单处理（即“不允许哪些敏感信息”或“只允许哪些信息”，白名单的效果更好但局限性高）；
+
+
+#### 四.DNS解析的过程
 
 
 ## 前端框架
@@ -282,6 +290,12 @@ Vue的`$mount()`为手动挂载，在项目中可用于延时挂载（例如在�
 基本思路是为要处理的项目创建一个队列,然后使用定时器取出,然后使用定时器取出下一个要处理的项目进行处理,接着再设置另一个定时器.
 
 
+#### 三.图文混排技术实现
+[参考资料](https://www.cnblogs.com/flyromance/p/5042187.html)
+
+
+#### 四.运营商劫持如何解决
+
 	
 
 ## 前端工具
@@ -314,4 +328,10 @@ https://maimai.cn/article/detail?fid=274522832&from=single_feed&share_user=http%
 1.https://juejin.im/post/59ec3d50f265da431c6f7339
 
 2.
+
+
+
+https://juejin.im/post/59ec3d50f265da431c6f7339
+
+http://caisk.cn/?from=groupmessage&isappinstalled=0#/dairy
 

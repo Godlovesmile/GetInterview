@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>面试题</title>
+</head>
+<body>
+    <script>
+        // 1.如何判断一个变量或者对象是否为undefined
+       var a;
+       // alert(typeof(a) === 'undefined');
+       // alert(typeof(b));
+
+       // 2.用正则怎样去掉重复字符串,只保留一个
+       // eg: var str = 'aaaebbbcccddd';
+       var str = "22223aaaebbbcccddd";
+       var pattern = /(.)\1+/g;
+       console.log(pattern.exec(str));
+       // str = str.replace(/(.)\1+/g, '$1');
+       // str = str.replace(/(.).*\1/g, "$1")
+       // alert(str);
+
+       // 3.用原生js写Aajx请求
+       /*
+       var xhr = new XMLHttpRequest();
+       xhr.open('get', url, true);
+       xhr.send();
+       xhr.onreadystatechange = function () {
+           if (xhr.readyState === 4 && xhr.status === 200 || xhr.status === 304) {
+                xhr.responseText;
+           }
+       }*/
+
+
+       // 4.数组去重实现?
+       var arrA = ['a', 'b', 'c', 'a', 'c'];
+       function search (arr) {
+        var result = [];
+        arr.forEach(function (item, index) {
+                if (result.indexOf(item) === -1) {
+                    result.push(item);
+                }
+        });
+        return result;
+       }
+       console.log(search(arrA));
+
+       function unique (arr) {
+          var ret = [];
+          arr.forEach(function (item) {
+            if (!ret.includes(item)) {
+                ret.push(item);
+            }
+          });
+          return ret;
+       }
+       console.log(unique(arrA));
+
+       // 5.当我们使用css3新属性,比如 box-shado 或者 transition时,我们怎么检测浏览器是否支持这个属性(请写一个javascript函数)
+        var support_css3 = (function () {
+            var div = document.createElement('div'),
+                vendors = ['ms', 'o', 'moz', 'webkit'],
+                len = vendors.length;
+            
+            return function (prop) {
+                if (prop in div.style) return true;
+            
+                prop = prop.replace(/^[a-z]/, function (val) {
+                    return val.toUpperCase();
+                });
+            
+                while(len--) {
+                    if ( vendors[len] + prop in div.style ) {
+                        return true;
+                    } 
+                }
+                return false;
+            };
+        })();
+
+        console.log(support_css3('opacity'));
+        // webkitBorderStartColor
+        console.log(support_css3('bordrStartColor'));
+
+        // 方法二
+        // -webkit-box-shadow
+        function isPropertySupported (property) {
+            return property in document.body.style;
+        }
+        console.log(document.body.style);
+
+        // 6.如何判断对象的类型,每一种判断方法的优缺?
+        /*
+            + typeof 区别对象和基本数据类型才有作用
+            + instanceof 可以检测对象类型(如数组, 正则等)
+            + constructor 属性。 JavaScript中，每个对象都有一个constructor属性，它引用了初始化该对象的构造函数，常用于判断未知对象的类型
+        */
+        var is = {
+            types : ["Array", "Boolean", "Date", "Number", "Object", "RegExp", "String", "Window", "HTMLDocument"]
+            };
+            for(var i = 0, c; c = is.types[i ++ ]; ) {
+            is[c] = (function (type) {
+                return function (obj) {
+                    return Object.prototype.toString.call(obj) == "[object " + type + "]";
+                }
+            })(c);
+        };
+        // alert(is.Array([])); // true
+        // alert(is.Date(new Date)); // true
+        // alert(is.RegExp(/reg/ig)); // true
+
+        // 7.
+        /*
+        var a = 1;
+        var obj = {b: 2};
+        var fn = function () {};
+        fn.c = 3;
+
+        function test (x, y, z) {
+            x = 4;
+            y.b = 5;
+            z.c = 6;
+            return z;
+        }
+        test(a, obj, fn);
+        alert(a + obj.b + fn.c); */  // 1 5 6
+
+        // 10.有如下代码运行结果依次是?为什么
+        function test1 () {
+            var a = 1;
+            setTimeout(function () {
+                alert(a);   // 2
+                a = 3;
+            }, 1000);
+            a = 2;
+            setTimeout(function () {
+                alert(a);  // 3
+                a = 4;
+            }, 3000);
+            alert(a);
+        }
+        // test1();
+        // alert(0);
+        
+        // 11.
+        /*
+        var length = 10;
+        function fn () {
+            alert(this.length);
+        } 
+        var obj = {
+            length: 5,
+            method: function (fn) {
+                fn();
+                arguments[0]();
+            }
+        }
+        obj.method(fn);*/
+
+        // 12. js事件绑定有几种方式,区别是什么
+        /*
+        在JavaScript中，有三种常用的绑定事件的方法：
+            + 在DOM元素中直接绑定；
+            + 在JavaScript代码中绑定；
+            + 绑定事件监听函数。
+        */
+    </script>
+</body>
+</html>
