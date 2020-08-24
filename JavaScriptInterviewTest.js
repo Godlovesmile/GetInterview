@@ -92,7 +92,8 @@ function testGetEqualArr(arr, n = 3) {
 	 * @n 均分的份数
 	 */
 	const getEqualArr = (arr, n = 3) => {
-		const sortArr = arrSort(arr);
+        const sortArr = arrSort(arr);
+        console.log(sortArr);
 		const arrSum = sumTotal(arr);
 		let result = [];
 		(getEachArr = () => {
@@ -117,4 +118,59 @@ function testGetEqualArr(arr, n = 3) {
 	};
 	return getEqualArr(arr, n);
 }
-console.log(testGetEqualArr([1, 2, 3, 4, 5, 6, 7, 8]));
+// console.log(testGetEqualArr([2, 1, 8, 3, 4, 5, 6, 7]));
+
+/*
+ * 4. Currying ——只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数。
+ * curry 的概念很简单：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数。
+ * ---- todo -----
+*/
+function testCurrying() {
+	function curry(targetFn) {
+		// let numOfArgs = targetFn.length;
+		let args = [];
+		return function fn(...newArgs) {
+			// if (arguments.length < numOfArgs) {
+			// 	return fn.bind(null, ...arguments);
+			// } else {
+			// 	return targetFn.apply(null, arguments);
+			// }
+			if (newArgs.length) {
+				args = [
+					...args,
+					...newArgs
+				];
+				return fn;
+			} else {
+				let val = targetFn.apply(this, args);
+				args = [];
+				return val;
+			}
+		};
+	}
+	function add(...args) {
+		return args.reduce((a, b) => a + b);
+	}
+	const addCurry = curry(add);
+	console.log(addCurry(1)(2)(3)());
+}
+testCurrying();
+
+/*
+ * 5. 链式调用
+ * 链式调用的核心就在于调用完的方法将自身实例返回
+*/
+function testChainCall() {
+    const obj = {
+        a: function() {
+            console.log('a');
+            return this;
+        },
+        b: function() {
+            console.log('b');
+            return this;
+        }
+    };
+    obj.a().b();
+}
+// testChainCall();
